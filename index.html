@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Important Question 💖</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      background: #ffe6ee;
+      text-align: center;
+      padding-top: 80px;
+      position: relative;
+      overflow: hidden;
+    }
+
+    h1 {
+      color: #d6336c;
+    }
+
+    button {
+      font-size: 18px;
+      padding: 12px 24px;
+      margin: 20px;
+      border: none;
+      border-radius: 8px;
+      cursor: pointer;
+    }
+
+    #yes {
+      background-color: #ff4d6d;
+      color: white;
+      transition: transform 0.2s ease;
+    }
+
+    #no {
+      background-color: #adb5bd;
+      position: absolute;
+      transition: all 0.2s ease;
+    }
+  </style>
+</head>
+<body>
+
+  <h1 id="question">Kallan, will you be my Valentine? 💘</h1>
+
+  <button id="yes" onclick="yesClicked()">Yes 💕</button>
+  <button id="no" onclick="noClicked()">No 🙄</button>
+
+  <script>
+    let noCount = 0;
+
+    const messages = [
+      "Are you sure? 🥺",
+      "Like… REALLY sure? 😐",
+      "What if I bring snacks? 🍫",
+      "I’ll be very sad. Extremely sad. 😭",
+      "Okay now you’re just playing hard to get.",
+      "The 'Yes' button is right there 👀",
+      "This is getting suspicious…",
+      "Fine. Last chance.",
+      "Just kidding. Kallan, will you be my Valentine? 💖"
+    ];
+
+    const noButton = document.getElementById("no");
+    const yesButton = document.getElementById("yes");
+    const question = document.getElementById("question");
+
+    function noClicked() {
+      noCount++;
+
+      question.innerText =
+        messages[Math.min(noCount, messages.length - 1)];
+
+      // Make YES button grow
+      yesButton.style.transform = `scale(${1 + noCount * 0.1})`;
+
+      // Make NO button run away
+      if (noCount >= 3) {
+        const x = Math.random() * (window.innerWidth - noButton.offsetWidth);
+        const y = Math.random() * (window.innerHeight - noButton.offsetHeight);
+        noButton.style.left = x + "px";
+        noButton.style.top = y + "px";
+      }
+
+      // Remove NO button after enough clicks
+      if (noCount >= 7) {
+        noButton.style.display = "none";
+      }
+    }
+
+    function yesClicked() {
+      document.body.innerHTML = `
+        <h1>WAIT 😳💖</h1>
+        <p style="font-size:22px;">
+          Before we continue…
+        </p>
+        <p style="font-size:22px;">
+          Go check the trunk of the car 🚗✨
+        </p>
+        <p style="font-size:18px;">
+          I’ll wait 😌
+        </p>
+      `;
+    }
+  </script>
+
+</body>
+</html>
